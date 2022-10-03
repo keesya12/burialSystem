@@ -72,23 +72,23 @@
             <tbody>
               @foreach($records as $data)
               <tr>    
-                <th>{{$data->Reference_Number}}</th>
+                <th>{{$data->RefNum}}</th>
                 <th>{{$data->Date}}</th>
                 <th>{{$data->Name}}</th>
                 <th>{{$data->City}}</th>
                 <th>{{$data->Province}}</th>      
-                <th>{{$data->Name_of_Deceased}}</th>
+                <th>{{$data->NameOfDeceased}}</th>
                 <th>{{$data->Nationality}}</th>
                 <th>{{$data->Age}}</th>
                 <th>{{$data->Sex}}</th>
-                <th>{{$data->Date_of_Death}}</th>     
-                <th>{{$data->Cause_of_Death}}</th>
-                <th>{{$data->Name_of_Cemetery}}</th>
-                {{-- <th>{{$data->infect}}</th>
-                <th>{{$data->embalm}}</th>          
-                <th>{{$data->disposition}}</th> --}}
+                <th>{{$data->DateOfDeath}}</th>     
+                <th>{{$data->CauseOfDeath}}</th>
+                <th>{{$data->NameOfCemetery}}</th>
+                {{-- <th>{{$data->Infectious}}</th>
+                <th>{{$data->Embalmed}}</th>          
+                <th>{{$data->DispositionOfRemains}}</th> --}}
                 <th>{{$data->Amount}}</th>
-                <th>{{$data->Collecting_Officer}}</th>        
+                <th>{{$data->CollectingOfficer}}</th>        
               </tr>
           @endforeach
             </tfoot>

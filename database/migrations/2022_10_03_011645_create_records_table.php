@@ -14,23 +14,23 @@ return new class extends Migration
     public function up()
     {
         Schema::create('records', function (Blueprint $table) {
-            $table->id('Reference_Number');
+            $table->id('RefNum');
             $table->date('Date');
             $table->string('Name');
             $table->string('City');
             $table->string('Province');
-            $table->string('Name_of_Deceased');
+            $table->string('NameOfDeceased');
             $table->string('Nationality');
             $table->integer('Age');
             $table->string('Sex');
-            $table->date('Date_of_Death');
-            $table->string('Cause_of_Death');
-            $table->string('Name_of_Cemetery');
-            $table->string('Infectious/Non-Infectious');
-            $table->string('Body_Embalmed/Not_Embalmned');
-            $table->string('Disposition_of_Remains');
+            $table->date('DateOfDeath');
+            $table->string('CauseOfDeath');
+            $table->string('NameOfCemetery');
+            $table->string('Infectious');
+            $table->string('Embalmed');
+            $table->string('DispositionOfRemains');
             $table->integer('Amount');
-            $table->string('Collecting_Officer');
+            $table->string('CollectingOfficer');
         });
     }
 
