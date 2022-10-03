@@ -53,7 +53,7 @@
                 </a>
               </li>
               <li class="#">
-                <a href="#" class="nav-link">
+                <a href="{{url('/admin/users')}}" class="nav-link">
                  <img src="{{asset ('assets/images/users.png')}}" width="25" height="25" />
                   <p>User Management</p>
                 </a>

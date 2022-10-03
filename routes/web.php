@@ -27,6 +27,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::prefix('admin')->middleware(['auth'])-> group(function(){
     Route::get('/dashboard',[App\Http\Controllers\Admin\DashboardController::class,'index'])->name('dashboard');
     Route::get('/records',[App\Http\Controllers\Admin\RecordsController::class,'index'])->name('records');
+    Route::get('/users',[App\Http\Controllers\Admin\UserController::class,'index'])->name('users');
     Route::get('/create',[App\Http\Controllers\Admin\RecordsController::class,'create'])->name('create');
     Route::post('/create',[App\Http\Controllers\Admin\RecordsController::class,'store'])->name('save');
     Route::get('/show',[App\Http\Controllers\Admin\RecordsController::class,'show'])->name('show');

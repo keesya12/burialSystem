@@ -8,7 +8,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Burial Permit Records</h1>
+            <h1 class="m-0">Users</h1>
             <br>
             @if (Session::get('success'))
             <div class="alert alert-success">
@@ -24,7 +24,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{url('admin/dashboard')}}">Home</a></li>
-              <li class="breadcrumb-item active">Burial Permit Records</li>
+              <li class="breadcrumb-item active">Users</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -37,7 +37,7 @@
       <div class="card">
         <div class="card-header">
           <h3 class="card-title">Burial Permit Records</h3>
-          <div class="col-sm-12 col-md-6">           
+          {{-- <div class="col-sm-12 col-md-6">           
             <div class="dt-buttons btn-group flex-row ">  
             <a href="{{url('/admin/create')}}" class="btn btn-success"><i class="fa fa-plus"></i> Add New</a>
             <a href="#" class="btn btn-warning "><i class="fa fa-pencil-square-o"></i> Edit </a>
@@ -47,55 +47,27 @@
 
             <a href="{{ route('export') }}" class="btn btn-primary"><i class="fa fa-print" aria-hidden="true"></i><span> Print</span></a>
             </div>
-        </div>
+        </div> --}}
         <!-- /.card-header -->
         <div class="card-body">
           <table id="records" class="table table-bordered table-striped">
             <thead>
             <tr>
-              <th>Reference Number</th>
-              <th>Date</th>
               <th>Name</th>
-              <th>City</th>
-              <th>Province</th>
-              <th>Name of Deceased</th>
-              <th>Age</th>
-              <th>Sex</th>
-              <th>Nationality</th>
-              <th>Date of Death</th>
-              <th>Cause of Death</th>
-              <th>Name of Cemetery</th>
-              <th>Amount Paid</th>
-              <th>Collecting Officer</th>
+              <th>Email/Username</th>
+              <th>Created_at</th>
             </tr>
             </thead>
             <tbody>
-              @foreach($records as $data)
+              @foreach($users as $data)
               <tr>    
-                <th>{{$data->Reference_Number}}</th>
-                <th>{{$data->Date}}</th>
-                <th>{{$data->Name}}</th>
-                <th>{{$data->City}}</th>
-                <th>{{$data->Province}}</th>      
-                <th>{{$data->Name_of_Deceased}}</th>
-                <th>{{$data->Nationality}}</th>
-                <th>{{$data->Age}}</th>
-                <th>{{$data->Sex}}</th>
-                <th>{{$data->Date_of_Death}}</th>     
-                <th>{{$data->Cause_of_Death}}</th>
-                <th>{{$data->Name_of_Cemetery}}</th>
-                {{-- <th>{{$data->infect}}</th>
-                <th>{{$data->embalm}}</th>          
-                <th>{{$data->disposition}}</th> --}}
-                <th>{{$data->Amount}}</th>
-                <th>{{$data->Collecting_Officer}}</th>        
-              </tr>
+                <th>{{$data->name}}</th>
+                <th>{{$data->email}}</th>
+                <th>{{$data->created_at}}</th>
           @endforeach
             </tfoot>
           </table>
           <br>
-        {{-- Pagination --}}
-          {{ $records->links() }}
         </div>
         <!-- /.card-body -->
       </div>

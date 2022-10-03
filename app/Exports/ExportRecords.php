@@ -19,23 +19,23 @@ class ExportRecords implements FromCollection, WithHeadings
     public function headings(): array
     {
         return [
-            'refNum',
-            'date',
-            'payer',
-            'city',
-            'prov',
-            'nameOfdead',
-            'nat',
-            'age',
-            'sex',
-            'dateofdeath',
-            'causeofdeath',
-            'nameofcemetery',
-            'infect',
-            'embalm',
-            'disposition',
-            'amt',
-            'colOfficer'
+            'Reference_Number',
+            'Date',
+            'Name',
+            'City',
+            'Province',
+            'Name of Deceased',
+            'Nationality',
+            'Age',
+            'Sex',
+            'Date of Death',
+            'Cause of Death',
+            'Name of Cemetery',
+            'Infectious/Non-Infectious',
+            'Body_Embalmed/Not_Embalmned',
+            'Disposition_of_Remains',
+            'Amount',
+            'Collecting Officer'
         ];
     }
 }
