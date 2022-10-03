@@ -45,45 +45,45 @@ class RecordsController extends Controller
         
 
         $request->validate([
-            'refNum'=>'integer|required',
-            'date'=>'date|required',
-            'payer'=>'string|required',
-            'city'=>'string|required',
-            'prov'=>'string|required',
-            'nameOfdead'=>'string|required',
-            'nat'=>'string|required',
-            'age'=>'numeric|min:1|max:150',
-            'sex'=>'string|required',
-            'dateofdeath'=>'date|required',
-            'causeofdeath'=>'string|required',
-            'nameofcemetery'=>'string|required',
-            'infect'=>'string|required',
-            'embalm'=>'string|required',
-            'disposition'=>'string|required',
-            'amt'=>'integer|required',
-            'colOfficer'=>'string|required'
+            'Reference Number'=>'integer|required',
+            'Date'=>'date|required',
+            'Name'=>'string|required',
+            'City'=>'string|required',
+            'Province'=>'string|required',
+            'Name of Deceased'=>'string|required',
+            'Nationality'=>'string|required',
+            'Age'=>'numeric|min:1|max:150',
+            'Sex'=>'string|required',
+            'Date of Death'=>'date|required',
+            'Cause of Death'=>'string|required',
+            'Name of Cemetery'=>'string|required',
+            'Infectious/Non-Infectious'=>'string|required',
+            'Body Embalmed/Not Embalmned'=>'string|required',
+            'Disposition of Remains'=>'string|required',
+            'Amount'=>'integer|required',
+            'Collecting Officer'=>'string|required'
         ]);
         $query = DB::table('records')->insert([
 
-            'refNum'=>$request->input('refNum'),
-            'date'=>$request->input('date'),
-            'payer'=>$request->input('payer'),
-            'city'=>$request->input('city'),
-            'prov'=>$request->input('prov'),
-            'nameOfdead'=>$request->input('nameOfdead'),
-            'nat'=>$request->input('nat'),
-            'age'=>$request->input('age'),
-            'sex'=>$request->input('sex'),
-            'dateofdeath'=>$request->input('dateofdeath'),
-            'causeofdeath'=>$request->input('causeofdeath'),
-            'nameofcemetery'=>$request->input('nameofcemetery'),
-            'infect'=>$request->input('infect'),
-            'embalm'=>$request->input('embalm'),
-            'disposition'=>$request->input('disposition'),
-            'amt'=>$request->input('amt'),
-            'colOfficer'=>$request->input('colOfficer'),
-            'created_at'=>  \Carbon\Carbon::now(), # new \Datetime()
-            'updated_at' => \Carbon\Carbon::now(),  # new \Datetime()
+            'Reference Number'=>$request->input('refNum'),
+            'Date'=>$request->input('date'),
+            'Name'=>$request->input('payer'),
+            'City'=>$request->input('city'),
+            'Province'=>$request->input('prov'),
+            'Name of Deceased'=>$request->input('nameOfdead'),
+            'Nationality'=>$request->input('nat'),
+            'Age'=>$request->input('age'),
+            'Sex'=>$request->input('sex'),
+            'Dateof Death'=>$request->input('dateofdeath'),
+            'Cause of Death'=>$request->input('causeofdeath'),
+            'Name of Cemetery'=>$request->input('nameofcemetery'),
+            'Infectious/Non-Infectious'=>$request->input('infect'),
+            'Body Embalmed/Not Embalmned'=>$request->input('embalm'),
+            'Disposition of Remains'=>$request->input('disposition'),
+            'Amount'=>$request->input('Amount'),
+            'Collecting Officer'=>$request->input('colOfficer'),
+            // 'created_at'=>  \Carbon\Carbon::now(), # new \Datetime()
+            // 'updated_at' => \Carbon\Carbon::now(),  # new \Datetime()
         ]);
         if($query){
             return redirect()->route('records')->with('success','Record has been successfully added!');

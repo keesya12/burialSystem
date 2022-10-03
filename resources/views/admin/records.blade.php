@@ -8,7 +8,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Dashboard</h1>
+            <h1 class="m-0">Burial Permit Records</h1>
             <br>
             @if (Session::get('success'))
             <div class="alert alert-success">
@@ -24,7 +24,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{url('admin/dashboard')}}">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard</li>
+              <li class="breadcrumb-item active">Burial Permit Records</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -73,7 +73,7 @@
               @foreach($records as $data)
               <tr>    
                 <th>{{$data->refNum}}</th>
-                <th>{{$data->date}}</th>
+                <th>{{$data->Date}}</th>
                 <th>{{$data->payer}}</th>
                 <th>{{$data->city}}</th>
                 <th>{{$data->prov}}</th>      
