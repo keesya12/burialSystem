@@ -37,15 +37,13 @@
       <div class="card">
         <div class="card-header">
           <h3 class="card-title">Burial Permit Records</h3>
-          <div class="col-sm-12 col-md-6">           
-            <div class="dt-buttons btn-group flex-row ">  
+          <div class="col-sm-12 col-md-5">
+            <br>           
+            <div class="dt-buttons btn-group"> 
             <a href="{{url('/admin/create')}}" class="btn btn-success"><i class="fa fa-plus"></i> Add New</a>
-            <a href="#" class="btn btn-warning "><i class="fa fa-pencil-square-o"></i> Edit </a>
-            <a href="#" class="btn btn-danger "><i class="fa fa-trash" ></i> Delete</a>
-            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+            <a href="#" data-toggle="modal" data-target="#ModalDelete" class="btn btn-danger "><i class="fa fa-trash" ></i> Delete</a>
             <a href="{{ route('export') }}" class="btn btn-primary"><i class="fa fa-file-excel-o" aria-hidden="true"></i><span> Excel</span></a>
-
-            <a href="{{ route('export') }}" class="btn btn-primary"><i class="fa fa-print" aria-hidden="true"></i><span> Print</span></a>
+            <a href="#" class="btn btn-primary"><i class="fa fa-print" aria-hidden="true"></i><span> Print</span></a>
             </div>
         </div>
         <!-- /.card-header -->
@@ -59,14 +57,15 @@
               <th>City</th>
               <th>Province</th>
               <th>Name of Deceased</th>
+              <th>Nationality</th>
               <th>Age</th>
               <th>Sex</th>
-              <th>Nationality</th>
               <th>Date of Death</th>
               <th>Cause of Death</th>
               <th>Name of Cemetery</th>
               <th>Amount Paid</th>
               <th>Collecting Officer</th>
+              <th>Actions</th>
             </tr>
             </thead>
             <tbody>
@@ -88,7 +87,10 @@
                 <th>{{$data->Embalmed}}</th>          
                 <th>{{$data->DispositionOfRemains}}</th> --}}
                 <th>{{$data->Amount}}</th>
-                <th>{{$data->CollectingOfficer}}</th>        
+                <th>{{$data->CollectingOfficer}}</th>
+                <th><a href="#" class="btn btn-warning "data-toggle="modal" data-target="#ModalEdit{{$data->RefNum}}"><i class="fa fa-pencil-square-o"></i></a>
+                  <a href="#"data-toggle="modal" data-target="#ModalView{{$data->RefNum}}" class="btn btn-secondary"><i class="fa fa-eye" aria-hidden="true"></i></a>  
+                  </th>        
               </tr>
           @endforeach
             </tfoot>
@@ -107,17 +109,14 @@
 </div>
 <!-- /.container-fluid -->
 </section>
-
+@include("modals.delete")
+@include("modals.edit")
+@include("modals.view")
   <script>
-    $(function () {
-      $('records').DataTable({
-        "lengthChange": false,
-        "searching": false,
-        "ordering": true,
-        "info": true,
-        "autoWidth": false,
-        "responsive": true,
-      });
+   $(document).ready(function () {
+    $('#records').DataTable({
+      order: [[ 3, 'desc' ], [ 0, 'asc' ]]
     });
+});
   </script>
 @endsection

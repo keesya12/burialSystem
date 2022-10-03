@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\Admin\RecordsController;
+
 use Illuminate\Support\Facades\Route;
-use App\Models\Form;
+use App\Http\Controllers\Admin\RecordsController;
+
 
 use function Ramsey\Uuid\v1;
 
@@ -29,9 +30,11 @@ Route::prefix('admin')->middleware(['auth'])-> group(function(){
     Route::get('/records',[App\Http\Controllers\Admin\RecordsController::class,'index'])->name('records');
     Route::get('/users',[App\Http\Controllers\Admin\UserController::class,'index'])->name('users');
     Route::get('/create',[App\Http\Controllers\Admin\RecordsController::class,'create'])->name('create');
-    Route::post('/create',[App\Http\Controllers\Admin\RecordsController::class,'store'])->name('save');
+    Route::post('/save',[App\Http\Controllers\Admin\RecordsController::class,'store'])->name('save');
     Route::get('/show',[App\Http\Controllers\Admin\RecordsController::class,'show'])->name('show');
     Route::get('/export-records',[App\Http\Controllers\Admin\RecordsController::class,'exportRecords'])->name('export');
+    // Route::get('/delete/{RefNum}', [App\Http\Controllers\Admin\RecordsController::class, 'destroy'])->name('delete');
+   
 });
 Route::resource('records','RecordsController');
 

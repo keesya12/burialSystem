@@ -17,7 +17,7 @@ class RecordsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
-        $data = Record::paginate(5);
+        $data = Record::paginate(50);
         return view('admin.records',['records'=>$data]);
         
     }
@@ -86,9 +86,9 @@ class RecordsController extends Controller
             // 'updated_at' => \Carbon\Carbon::now(),  # new \Datetime()
         ]);
         if($query){
-            return redirect()->route('records')->with('success','Record has been successfully added!');
+            return redirect()->route('records')->with('success','Record has been successfully updated!');
         }else{
-            return back()->with('fail','Record has not been  added!');
+            return back()->with('fail','Record has not been updated!');
         }
         }
 
@@ -121,9 +121,14 @@ class RecordsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $RefNum)
     {
-        //
+           $record = Record::find($RefNum);
+           $input = $request->all();
+           $record->fill($input)->save();
+
+            return redirect()->route('records')->with('success','Record has been successfully added!');
+        
     }
 
     /**
@@ -132,9 +137,12 @@ class RecordsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($RefNum)
     {
-        //
+        
+        // $record = Record::find($RefNum);
+
+        // return view('modals.delete', compact('record'));
     }
     public function exportRecords(Request $request){
         return Excel::download(new ExportRecords, 'Burial Permit Record.xlsx');
