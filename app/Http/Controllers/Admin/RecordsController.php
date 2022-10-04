@@ -41,7 +41,7 @@ class RecordsController extends Controller
     public function store(Request $request)
     {
  
-        //Record::create($request->all()); -- shortcut of getting the data
+        //Record::create($request->all()); -- shortcut of inputting the data
         
 
         $request->validate([
@@ -81,12 +81,12 @@ class RecordsController extends Controller
             'Embalmed'=>$request->input('Embalmed'),
             'DispositionOfRemains'=>$request->input('DispositionOfRemains'),
             'Amount'=>$request->input('Amount'),
-            'CollectingOfficer'=>$request->input('CollectingOfficer'),
+            'CollectingOfficer'=>$request->input('CollectingOfficer')
             // 'created_at'=>  \Carbon\Carbon::now(), # new \Datetime()
             // 'updated_at' => \Carbon\Carbon::now(),  # new \Datetime()
         ]);
         if($query){
-            return redirect()->route('records')->with('success','Record has been successfully updated!');
+            return redirect()->route('records')->with('status','Record has been successfully updated!');
         }else{
             return back()->with('fail','Record has not been updated!');
         }
@@ -109,9 +109,9 @@ class RecordsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
-        //
+        return view ('admin.edit');
     }
 
     /**
@@ -123,12 +123,67 @@ class RecordsController extends Controller
      */
     public function update(Request $request, $RefNum)
     {
-           $record = Record::find($RefNum);
-           $input = $request->all();
-           $record->fill($input)->save();
+        // $request->validate([
+        //     'RefNum'=>'integer|required',
+        //     'Date'=>'date|required',
+        //     'Name'=>'string|required',
+        //     'City'=>'string|required',
+        //     'Province'=>'string|required',
+        //     'NameOfDeceased'=>'string|required',
+        //     'Nationality'=>'string|required',
+        //     'Age'=>'numeric|min:1|max:150',
+        //     'Sex'=>'string|required',
+        //     'DateOfDeath'=>'date|required',
+        //     'CauseOfDeath'=>'string|required',
+        //     'NameOfCemetery'=>'string|required',
+        //     'Infectious'=>'string|required',
+        //     'Embalmed'=>'string|required',
+        //     'DispositionOfRemains'=>'string|required',
+        //     'Amount'=>'integer|required',
+        //     'CollectingOfficer'=>'string|required'
+        // ]);
+            $record = Record::find($RefNum);
+            $record -> $request->get('RefNum');
+            $record -> $request->get('Date');
+            $record -> $request->get('Name');
+            $record -> $request->get('City');
+            $record -> $request->get('Province');
+            $record -> $request->get('NameOfDeceased');
+            $record -> $request->get('Nationality');
+            $record -> $request->get('Age');
+            $record -> $request->get('Sex');
+            $record -> $request->get('DateOfDeath');
+            $record -> $request->get('CauseOfDeath');
+            $record -> $request->get('NameOfCemetery');
+            $record -> $request->get('Infectious');
+            $record -> $request->get('Embalmed');
+            $record -> $request->get('DispositionOfRemains');
+            $record -> $request->get('Amount');
+            $record -> $request->get('CollectingOfficer');
+            $record -> save();
 
-            return redirect()->route('records')->with('success','Record has been successfully added!');
-        
+        // $updating = DB::table('records')
+        //             -> where('RefNum', $request->input('RefNum'))
+        //             ->update([
+        //                 'Date'=>$request->input('Date'),
+        //                 'Name'=>$request->input('Name'),
+        //                 'City'=>$request->input('City'),
+        //                 'Province'=>$request->input('Province'),
+        //                 'NameOfDeceased'=>$request->input('NameOfDeceased'),
+        //                 'Nationality'=>$request->input('Nationality'),
+        //                 'Age'=>$request->input('Age'),
+        //                 'Sex'=>$request->input('Sex'),
+        //                 'DateOfDeath'=>$request->input('DateOfDeath'),
+        //                 'CauseOfDeath'=>$request->input('CauseOfDeath'),
+        //                 'NameOfCemetery'=>$request->input('NameOfCemetery'),
+        //                 'Infectious'=>$request->input('Infectious'),
+        //                 'Embalmed'=>$request->input('Embalmed'),
+        //                 'DispositionOfRemains'=>$request->input('DispositionOfRemains'),
+        //                 'Amount'=>$request->input('Amount'),
+        //                 'CollectingOfficer'=>$request->input('CollectingOfficer')
+        //             ]);
+            
+        return redirect()->route('records')->with('status','Record has been successfully updated!');
     }
 
     /**

@@ -34,7 +34,8 @@ Route::prefix('admin')->middleware(['auth'])-> group(function(){
     Route::get('/show',[App\Http\Controllers\Admin\RecordsController::class,'show'])->name('show');
     Route::get('/export-records',[App\Http\Controllers\Admin\RecordsController::class,'exportRecords'])->name('export');
     // Route::get('/delete/{RefNum}', [App\Http\Controllers\Admin\RecordsController::class, 'destroy'])->name('delete');
-   
+    Route::get('/edit',[App\Http\Controllers\Admin\RecordsController::class,'edit'])->name('edit');
+    Route::put('/update',[App\Http\Controllers\Admin\RecordsController::class,'update'])->name('update');
 });
 Route::resource('records','RecordsController');
 

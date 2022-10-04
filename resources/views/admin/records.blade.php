@@ -10,9 +10,10 @@
           <div class="col-sm-6">
             <h1 class="m-0">Burial Permit Records</h1>
             <br>
-            @if (Session::get('success'))
-            <div class="alert alert-success">
-              {{Session::get('success')}}
+            @if (Session::get('status'))
+            <div class="alert alert-success alert-dismissible">
+              {{Session::get('status')}} 
+              <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
             </div>
             @endif
             @if (Session::get('fail'))
@@ -43,7 +44,7 @@
             <a href="{{url('/admin/create')}}" class="btn btn-success"><i class="fa fa-plus"></i> Add New</a>
             <a href="#" data-toggle="modal" data-target="#ModalDelete" class="btn btn-danger "><i class="fa fa-trash" ></i> Delete</a>
             <a href="{{ route('export') }}" class="btn btn-primary"><i class="fa fa-file-excel-o" aria-hidden="true"></i><span> Excel</span></a>
-            <a href="#" class="btn btn-primary"><i class="fa fa-print" aria-hidden="true"></i><span> Print</span></a>
+            <button class="btn btn-primary" onclick="myFunction()"><i class="fa fa-print" aria-hidden="true" onclick="myFunction()"></i>Print</button>
             </div>
         </div>
         <!-- /.card-header -->
@@ -88,7 +89,7 @@
                 <th>{{$data->DispositionOfRemains}}</th> --}}
                 <th>{{$data->Amount}}</th>
                 <th>{{$data->CollectingOfficer}}</th>
-                <th><a href="#" class="btn btn-warning "data-toggle="modal" data-target="#ModalEdit{{$data->RefNum}}"><i class="fa fa-pencil-square-o"></i></a>
+                <th><a href="#" class="btn btn-warning "><i class="fa fa-pencil-square-o"></i></a>
                   <a href="#"data-toggle="modal" data-target="#ModalView{{$data->RefNum}}" class="btn btn-secondary"><i class="fa fa-eye" aria-hidden="true"></i></a>  
                   </th>        
               </tr>
@@ -110,13 +111,17 @@
 <!-- /.container-fluid -->
 </section>
 @include("modals.delete")
-@include("modals.edit")
 @include("modals.view")
   <script>
    $(document).ready(function () {
     $('#records').DataTable({
       order: [[ 3, 'desc' ], [ 0, 'asc' ]]
     });
-});
+    function myFunction(){
+      window.print();
+    }
   </script>
+  
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 @endsection
