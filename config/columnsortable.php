@@ -7,11 +7,15 @@ return [
     */
     'columns'                       => [
         'alpha'   => [
-            'rows'  => ['NameOfDeaceased', 'City', 'Province', 'Name','Nationality','Infectious','Embalmed','DispositionOfRemains','Sex'],
+            'rows'  => ['description', 'email', 'name', 'slug'],
             'class' => 'fa fa-sort-alpha',
         ],
+        'amount'  => [
+            'rows'  => ['amount', 'price'],
+            'class' => 'fa fa-sort-amount',
+        ],
         'numeric' => [
-            'rows'  => ['RefNum', 'Age', 'Amount', 'Date', 'DateOfDeath'],
+            'rows'  => ['created_at', 'updated_at', 'level', 'id', 'phone_number'],
             'class' => 'fa fa-sort-numeric',
         ],
     ],
