@@ -813,4 +813,167 @@ l.each(u,function(a,b){l.fn.DataTable[a]=b});return u});
 !function(e){e(["jquery"],function(e){return function(){function t(e,t,n){return g({type:O.error,iconClass:m().iconClasses.error,message:e,optionsOverride:n,title:t})}function n(t,n){return t||(t=m()),v=e("#"+t.containerId),v.length?v:(n&&(v=d(t)),v)}function o(e,t,n){return g({type:O.info,iconClass:m().iconClasses.info,message:e,optionsOverride:n,title:t})}function s(e){C=e}function i(e,t,n){return g({type:O.success,iconClass:m().iconClasses.success,message:e,optionsOverride:n,title:t})}function a(e,t,n){return g({type:O.warning,iconClass:m().iconClasses.warning,message:e,optionsOverride:n,title:t})}function r(e,t){var o=m();v||n(o),u(e,o,t)||l(o)}function c(t){var o=m();return v||n(o),t&&0===e(":focus",t).length?void h(t):void(v.children().length&&v.remove())}function l(t){for(var n=v.children(),o=n.length-1;o>=0;o--)u(e(n[o]),t)}function u(t,n,o){var s=!(!o||!o.force)&&o.force;return!(!t||!s&&0!==e(":focus",t).length)&&(t[n.hideMethod]({duration:n.hideDuration,easing:n.hideEasing,complete:function(){h(t)}}),!0)}function d(t){return v=e("<div/>").attr("id",t.containerId).addClass(t.positionClass),v.appendTo(e(t.target)),v}function p(){return{tapToDismiss:!0,toastClass:"toast",containerId:"toast-container",debug:!1,showMethod:"fadeIn",showDuration:300,showEasing:"swing",onShown:void 0,hideMethod:"fadeOut",hideDuration:1e3,hideEasing:"swing",onHidden:void 0,closeMethod:!1,closeDuration:!1,closeEasing:!1,closeOnHover:!0,extendedTimeOut:1e3,iconClasses:{error:"toast-error",info:"toast-info",success:"toast-success",warning:"toast-warning"},iconClass:"toast-info",positionClass:"toast-top-right",timeOut:5e3,titleClass:"toast-title",messageClass:"toast-message",escapeHtml:!1,target:"body",closeHtml:'<button type="button">&times;</button>',closeClass:"toast-close-button",newestOnTop:!0,preventDuplicates:!1,progressBar:!1,progressClass:"toast-progress",rtl:!1}}function f(e){C&&C(e)}function g(t){function o(e){return null==e&&(e=""),e.replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/'/g,"&#39;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}function s(){c(),u(),d(),p(),g(),C(),l(),i()}function i(){var e="";switch(t.iconClass){case"toast-success":case"toast-info":e="polite";break;default:e="assertive"}I.attr("aria-live",e)}function a(){E.closeOnHover&&I.hover(H,D),!E.onclick&&E.tapToDismiss&&I.click(b),E.closeButton&&j&&j.click(function(e){e.stopPropagation?e.stopPropagation():void 0!==e.cancelBubble&&e.cancelBubble!==!0&&(e.cancelBubble=!0),E.onCloseClick&&E.onCloseClick(e),b(!0)}),E.onclick&&I.click(function(e){E.onclick(e),b()})}function r(){I.hide(),I[E.showMethod]({duration:E.showDuration,easing:E.showEasing,complete:E.onShown}),E.timeOut>0&&(k=setTimeout(b,E.timeOut),F.maxHideTime=parseFloat(E.timeOut),F.hideEta=(new Date).getTime()+F.maxHideTime,E.progressBar&&(F.intervalId=setInterval(x,10)))}function c(){t.iconClass&&I.addClass(E.toastClass).addClass(y)}function l(){E.newestOnTop?v.prepend(I):v.append(I)}function u(){if(t.title){var e=t.title;E.escapeHtml&&(e=o(t.title)),M.append(e).addClass(E.titleClass),I.append(M)}}function d(){if(t.message){var e=t.message;E.escapeHtml&&(e=o(t.message)),B.append(e).addClass(E.messageClass),I.append(B)}}function p(){E.closeButton&&(j.addClass(E.closeClass).attr("role","button"),I.prepend(j))}function g(){E.progressBar&&(q.addClass(E.progressClass),I.prepend(q))}function C(){E.rtl&&I.addClass("rtl")}function O(e,t){if(e.preventDuplicates){if(t.message===w)return!0;w=t.message}return!1}function b(t){var n=t&&E.closeMethod!==!1?E.closeMethod:E.hideMethod,o=t&&E.closeDuration!==!1?E.closeDuration:E.hideDuration,s=t&&E.closeEasing!==!1?E.closeEasing:E.hideEasing;if(!e(":focus",I).length||t)return clearTimeout(F.intervalId),I[n]({duration:o,easing:s,complete:function(){h(I),clearTimeout(k),E.onHidden&&"hidden"!==P.state&&E.onHidden(),P.state="hidden",P.endTime=new Date,f(P)}})}function D(){(E.timeOut>0||E.extendedTimeOut>0)&&(k=setTimeout(b,E.extendedTimeOut),F.maxHideTime=parseFloat(E.extendedTimeOut),F.hideEta=(new Date).getTime()+F.maxHideTime)}function H(){clearTimeout(k),F.hideEta=0,I.stop(!0,!0)[E.showMethod]({duration:E.showDuration,easing:E.showEasing})}function x(){var e=(F.hideEta-(new Date).getTime())/F.maxHideTime*100;q.width(e+"%")}var E=m(),y=t.iconClass||E.iconClass;if("undefined"!=typeof t.optionsOverride&&(E=e.extend(E,t.optionsOverride),y=t.optionsOverride.iconClass||y),!O(E,t)){T++,v=n(E,!0);var k=null,I=e("<div/>"),M=e("<div/>"),B=e("<div/>"),q=e("<div/>"),j=e(E.closeHtml),F={intervalId:null,hideEta:null,maxHideTime:null},P={toastId:T,state:"visible",startTime:new Date,options:E,map:t};return s(),r(),a(),f(P),E.debug&&console&&console.log(P),I}}function m(){return e.extend({},p(),b.options)}function h(e){v||(v=n()),e.is(":visible")||(e.remove(),e=null,0===v.children().length&&(v.remove(),w=void 0))}var v,C,w,T=0,O={error:"error",info:"info",success:"success",warning:"warning"},b={clear:r,remove:c,error:t,getContainer:n,info:o,options:{},subscribe:s,success:i,version:"2.1.4",warning:a};return b}()})}("function"==typeof define&&define.amd?define:function(e,t){"undefined"!=typeof module&&module.exports?module.exports=t(require("jquery")):window.toastr=t(window.jQuery)});
 //# sourceMappingURL=toastr.js.map
 
+/**
+ * Just like the _hidden title numeric sorting_ plug-in, this sorting plug-in
+ * will take the information to be sorted on from the title attribute of a span
+ * element. The only difference is that it is string based sorting rather than
+ * numeric.
+ *
+ * Note that the HTML5 `data-sort` attribute can be [used to supply sorting data
+ * to DataTables](//datatables.net/manual/orthogonal-data) and is preferable to
+ * using this method, which is therefore marked as deprecated.
+ * 
+ *  @name Hidden title string sorting
+ *  @summary Sort data as a string based on an attribute on an empty element.
+ *  @author [Allan Jardine](http://sprymedia.co.uk)
+ *  @deprecated
+ *
+ *  @example
+ *    $('#example').dataTable( {
+ *       columnDefs: [
+ *         { type: 'title-string', targets: 0 }
+ *       ]
+ *    } );
+ */
+
+jQuery.extend( jQuery.fn.dataTableExt.oSort, {
+	"title-string-pre": function ( a ) {
+		return a.match(/title="(.*?)"/)[1].toLowerCase();
+	},
+
+	"title-string-asc": function ( a, b ) {
+		return ((a < b) ? -1 : ((a > b) ? 1 : 0));
+	},
+
+	"title-string-desc": function ( a, b ) {
+		return ((a < b) ? 1 : ((a > b) ? -1 : 0));
+	}
+} );
+
+/*
+ * Adds a new sorting option to dataTables called `date-dd-mmm-yyyy`. Also
+ * includes a type detection plug-in. Matches and sorts date strings in
+ * the format: `dd/mmm/yyyy`. For example:
+ * 
+ * * 02-FEB-1978
+ * * 17-MAY-2013
+ * * 31-JAN-2014
+ *
+ * Please note that this plug-in is **deprecated*. The
+ * [datetime](//datatables.net/blog/2014-12-18) plug-in provides enhanced
+ * functionality and flexibility.
+ *
+ *  @name Date (dd-mmm-yyyy)
+ *  @summary Sort dates in the format `dd-mmm-yyyy`
+ *  @author [Jeromy French](http://www.appliedinter.net/jeromy_works/)
+ *  @deprecated
+ *
+ *  @example
+ *    $('#example').dataTable( {
+ *       columnDefs: [
+ *         { type: 'date-dd-mmm-yyyy', targets: 0 }
+ *       ]
+ *    } );
+ */
+
+(function () {
+
+    var customDateDDMMMYYYYToOrd = function (date) {
+        "use strict"; //let's avoid tom-foolery in this function
+        // Convert to a number YYYYMMDD which we can use to order
+        var dateParts = date.split(/-/);
+        return (dateParts[2] * 10000) + ($.inArray(dateParts[1].toUpperCase(), ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]) * 100) + (dateParts[0]*1);
+    };
+    
+    // This will help DataTables magic detect the "dd-MMM-yyyy" format; Unshift
+    // so that it's the first data type (so it takes priority over existing)
+    jQuery.fn.dataTableExt.aTypes.unshift(
+        function (sData) {
+            "use strict"; //let's avoid tom-foolery in this function
+            if (/^([0-2]?\d|3[0-1])-(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)-\d{4}/i.test(sData)) {
+                return 'date-dd-mmm-yyyy';
+            }
+            return null;
+        }
+    );
+    
+    // define the sorts
+    jQuery.fn.dataTableExt.oSort['date-dd-mmm-yyyy-asc'] = function (a, b) {
+        "use strict"; //let's avoid tom-foolery in this function
+        var ordA = customDateDDMMMYYYYToOrd(a),
+            ordB = customDateDDMMMYYYYToOrd(b);
+        return (ordA < ordB) ? -1 : ((ordA > ordB) ? 1 : 0);
+    };
+    
+    jQuery.fn.dataTableExt.oSort['date-dd-mmm-yyyy-desc'] = function (a, b) {
+        "use strict"; //let's avoid tom-foolery in this function
+        var ordA = customDateDDMMMYYYYToOrd(a),
+            ordB = customDateDDMMMYYYYToOrd(b);
+        return (ordA < ordB) ? 1 : ((ordA > ordB) ? -1 : 0);
+    };
+    
+    })();
+    /**
+ * 
+ * This plug in will sort only on the number value that is included anywhere in a Regex.
+ * This is useful for sorting data which requires some extra context to be included in the table.
+ *
+ *  @name numString
+ *  @summary Sorting for number value that is included anywhere in a regex.
+ *  @author [Sandy Galloway](http://datatables.net)
+ *
+ * 
+ *  @example
+ * //This example shows a mixture of text and number values, with the number at the start of the expression.
+ * //It is using regex and start and end of expression tags.
+ * //It will match "5 examples completed." for example. 
+ * $(document).ready( function(){
+ *      $.fn.dataTable.numString(/^\d+ examples? completed.$/);
+ *      var table = $('#example').DataTable();
+ * })
+ * 
+ * @example
+ *  //This example shows a mixture of text and number values, with the number at the end of the expression.
+ * //It is using regex and start and end of expression tags.
+ * //It will match "Examples left: 67" for example. 
+ *  $(document).ready( function(){
+ *      $.fn.dataTable.numString(/^Examples? left: \d+$/);
+ *      var table = $('#example').DataTable();
+ * })
+ * 
+ * @example
+ * //This example shows a mixture of text and number values, with the number in the middle of the expression.
+ * //It is using regex and no start and end of expression tags.
+ * //It will match "Only 1 left." for example. 
+ *  $(document).ready(function(){
+ *      $.fn.dataTable.numString(/Only \d+ left./);
+ *      var table = $('example').DataTable();
+ * })
+ * 
+    */
+$.fn.dataTable.numString = function(format) {
+    //This is the type detection plug in
+    $.fn.dataTable.ext.type.detect.unshift(function(data) {
+      if (typeof data !== "string") {
+        return null;
+      }
+  
+      if (data.match(format)) {
+        return "numString-" + format.source;
+      }
+  
+      return null;
+    });
+    
+    //This is the ordering plug in
+    $.fn.dataTable.ext.type.order[
+      "numString-" + format.source + "-pre"
+    ] = function(data) {
+      var num = data.replace(/\D/g, "");
+  
+      return num * 1;
+    };
+    // end plug-in
+  };
+  
  

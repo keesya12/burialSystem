@@ -17,10 +17,27 @@ class RecordsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
-        $data = Record::paginate(50);
-        return view('admin.records',['records'=>$data]);
+        $data = Record::sortable('refNum',
+        'date', 
+        'payer',
+        'city',
+        'prov',
+        'nameOfdead',
+        'nat',
+        'age',
+        'sex',
+        'dateofdeath',
+        'causeofdeath',
+        'nameofcemetery',
+        'infect',
+        'embalm',
+        'disposition',
+        'amt',
+        'colOfficer')->paginate(5);
+        return view('records.index',['records'=>$data]);
         
     }
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -28,7 +45,7 @@ class RecordsController extends Controller
      */
     public function create()
     {     
-         return view('admin.addRecord');
+         return view('records.create');
     }
  
 
@@ -98,9 +115,10 @@ class RecordsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($RefNum)
     {
-       
+        $records = Record::find($RefNum);
+        return view('modals.view')->with('records', $records);
     }
 
     /**
@@ -109,9 +127,10 @@ class RecordsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit()
+    public function edit($RefNum)
     {
-        return view ('admin.edit');
+         $records = Record::find($RefNum);
+        return view('records.edit');
     }
 
     /**
@@ -142,25 +161,29 @@ class RecordsController extends Controller
         //     'Amount'=>'integer|required',
         //     'CollectingOfficer'=>'string|required'
         // ]);
-            $record = Record::find($RefNum);
-            $record -> $request->get('RefNum');
-            $record -> $request->get('Date');
-            $record -> $request->get('Name');
-            $record -> $request->get('City');
-            $record -> $request->get('Province');
-            $record -> $request->get('NameOfDeceased');
-            $record -> $request->get('Nationality');
-            $record -> $request->get('Age');
-            $record -> $request->get('Sex');
-            $record -> $request->get('DateOfDeath');
-            $record -> $request->get('CauseOfDeath');
-            $record -> $request->get('NameOfCemetery');
-            $record -> $request->get('Infectious');
-            $record -> $request->get('Embalmed');
-            $record -> $request->get('DispositionOfRemains');
-            $record -> $request->get('Amount');
-            $record -> $request->get('CollectingOfficer');
-            $record -> save();
+        
+        $record = Record::find($RefNum);
+        $input = $request->all();
+        $record->update($input);
+            // $record = Record::find($RefNum);
+            // $record -> $request->get('RefNum');
+            // $record -> $request->get('Date');
+            // $record -> $request->get('Name');
+            // $record -> $request->get('City');
+            // $record -> $request->get('Province');
+            // $record -> $request->get('NameOfDeceased');
+            // $record -> $request->get('Nationality');
+            // $record -> $request->get('Age');
+            // $record -> $request->get('Sex');
+            // $record -> $request->get('DateOfDeath');
+            // $record -> $request->get('CauseOfDeath');
+            // $record -> $request->get('NameOfCemetery');
+            // $record -> $request->get('Infectious');
+            // $record -> $request->get('Embalmed');
+            // $record -> $request->get('DispositionOfRemains');
+            // $record -> $request->get('Amount');
+            // $record -> $request->get('CollectingOfficer');
+            // $record -> save();
 
         // $updating = DB::table('records')
         //             -> where('RefNum', $request->input('RefNum'))
@@ -202,4 +225,9 @@ class RecordsController extends Controller
     public function exportRecords(Request $request){
         return Excel::download(new ExportRecords, 'Burial Permit Record.xlsx');
     }
+    public function sortBy($RefNum){
+        dd('wow');
+
+    }
+
 }

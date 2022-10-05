@@ -27,14 +27,14 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::prefix('admin')->middleware(['auth'])-> group(function(){
     Route::get('/dashboard',[App\Http\Controllers\Admin\DashboardController::class,'index'])->name('dashboard');
-    Route::get('/records',[App\Http\Controllers\Admin\RecordsController::class,'index'])->name('records');
+    Route::get('/records',[App\Http\Controllers\Admin\RecordsController::class,'index'])->name('records.index');
     Route::get('/users',[App\Http\Controllers\Admin\UserController::class,'index'])->name('users');
     Route::get('/create',[App\Http\Controllers\Admin\RecordsController::class,'create'])->name('create');
     Route::post('/save',[App\Http\Controllers\Admin\RecordsController::class,'store'])->name('save');
     Route::get('/show',[App\Http\Controllers\Admin\RecordsController::class,'show'])->name('show');
     Route::get('/export-records',[App\Http\Controllers\Admin\RecordsController::class,'exportRecords'])->name('export');
     // Route::get('/delete/{RefNum}', [App\Http\Controllers\Admin\RecordsController::class, 'destroy'])->name('delete');
-    Route::get('/edit',[App\Http\Controllers\Admin\RecordsController::class,'edit'])->name('edit');
+    Route::get('{{$records->RefNum}}/edit',[App\Http\Controllers\Admin\RecordsController::class,'edit'])->name('edit');
     Route::put('/update',[App\Http\Controllers\Admin\RecordsController::class,'update'])->name('update');
 });
 Route::resource('records','RecordsController');
